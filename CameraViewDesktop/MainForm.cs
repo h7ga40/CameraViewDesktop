@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using CameraViewDesktop.Properties;
 
@@ -77,6 +78,14 @@ namespace CameraViewDesktop
 			}
 			if (cmbAudioList.Items.Count > 0 && cmbAudioList.SelectedIndex == -1) {
 				cmbAudioList.SelectedIndex = 0;
+			}
+
+			string deviceName = Settings.Screen;
+
+			if ((Screen.AllScreens.FirstOrDefault((screen) => screen.DeviceName == deviceName) == null)
+				|| (Screen.AllScreens.FirstOrDefault((screen) => screen.Bounds.Contains(Settings.CameraViewLocation)) == null)) {
+				Settings.Screen = deviceName;
+				Settings.CameraViewLocation = new Point(0, 0);
 			}
 		}
 
