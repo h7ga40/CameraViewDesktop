@@ -111,6 +111,12 @@ namespace CameraViewDesktop
 					TopMost = checkBox1.Checked,
 					Effector = effector
 				};
+
+				if ((ModifierKeys & Keys.Control) == Keys.Control) {
+					Settings.Screen = Screen.PrimaryScreen.DeviceName;
+					Settings.CameraViewLocation = new Point(0, 0);
+				}
+
 				cameraView.SetVideoInput(item);
 				cameraView.Show();
 				cameraView.BringToFront();
